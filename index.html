@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main">
+        <div class="theTwoSliders">
+    <div class="rangeSlider">
+        <h2>
+            What’s your average credit and
+debit card transaction?
+        </h2>
+         <div class="rangeSlider"></div>
+    <div class="theSliders">
+        <input type="range" min="0" max="1000" value="10" id="slider">
+        <div id="selector">
+            <div class="SelectBtn"></div>
+            <div id="SelectValue"></div>
+        </div>
+
+        <div id="progressBar"></div>
+       
+    </div>
+    <div class="valueLabel">
+        <p onclick="goToValue(0)">$0</p>
+        <p onclick="goToValue(250)">$250</p>
+        <p onclick="goToValue(500)">$500</p>
+        <p onclick="goToValue(750)">$750</p>
+        <p onclick="goToValue(1000)">$1000</p>
+    </div>
+</div>
+<div class="rangeSlider">
+    <h2>
+        What is the average size of your
+        credit card and debit transaction?
+    </h2>
+    <div class="rangeSlider"></div>
+<div class="theSliders">
+   <input type="range" min="0" max="1000" value="1" id="slider2">
+   <div id="selector2">
+       <div class="SelectBtn2"></div>
+       <div id="SelectValue2"></div>
+   </div>
+
+   <div id="progressBar2"></div>
+  
+</div>
+<div class="valueLabel2">
+   <p onclick="goToValue2(0)">0</p>
+   <p onclick="goToValue2(250)">250</p>
+   <p onclick="goToValue2(500)">500</p>
+   <p onclick="goToValue2(750)">750</p>
+   <p onclick="goToValue2(1000)">1000</p>
+</div>
+</div>
+</div>
+    <div class="theCalculations">
+        <div class="calcs">
+            <p>Average Transaction Size</p>
+            <h1 id="TransactionSize">$50</h1>
+        </div>
+        <div class="calcs">
+            <p>Transactions Per Month</p>
+            <h1 id="TransactionMonth">1</h1>
+        </div>
+        <div class="calcs">
+            <h1 id="loss">$100</h1>
+            <p>Yearly Losses by not Switching to Losingmyprofits</p>
+        </div>
+
+    </div>
+</div>
+    <script>
+        var slider = document.getElementById("slider");
+        var selector = document.getElementById("selector");
+        var SelectBtn = document.getElementsByClassName("SelectBtn");
+        var slider2 = document.getElementById("slider2");
+        var selector2 = document.getElementById("selector2");
+        var SelectBtn2 = document.getElementsByClassName("SelectBtn2");
+        var SelectValue = document.getElementById("SelectValue");
+        var SelectValue2 = document.getElementById("SelectValue2");
+        var progressBar = document.getElementById("progressBar");
+        var progressBar2 = document.getElementById("progressBar2");
+       
+
+        function goToValue2(x){
+            SelectValue2.innerHTML = x;
+            slider2.style.left = x/10 + "%";
+            selector2.style.left = x/10 + "%";
+            progressBar2.style.width = x/10 + "%";
+            
+            document.getElementById("TransactionMonth").innerHTML = x;
+            var losss = (slider.value) * (x) * 0.03 * 0.008 * 12;
+            document.getElementById("loss").innerHTML = "$" + round(losss, 2);
+        }
+        function goToValue(x){
+            SelectValue.innerHTML = "$" + x;
+            slider.style.left = x/10 + "%";
+            selector.style.left = x/10 + "%";
+            progressBar.style.width = x/10 + "%";
+
+            document.getElementById("TransactionSize").innerHTML = "$" + x;
+            var losss = (x) * (slider2.value) * 0.03 * 0.008 * 12;
+            document.getElementById("loss").innerHTML = "$" + round(losss, 2);
+        }
+
+
+        SelectValue.innerHTML = "$" + slider.value;
+        SelectValue2.innerHTML = slider2.value;
+        
+        function round(value, precision) {
+        var multiplier = Math.pow(10, precision || 0);
+        return Math.round(value * multiplier) / multiplier;
+        }
+
+
+        slider.oninput = function(){
+            SelectValue.innerHTML = "$" + this.value;
+            slider.style.left = this.value/10 + "%";
+            selector.style.left = this.value/10 + "%";
+            progressBar.style.width = this.value/10 + "%";
+
+            document.getElementById("TransactionSize").innerHTML = "$" + slider.value;
+            var losss = (slider.value) * (slider2.value) * 0.03 * 0.008 * 12;
+            document.getElementById("loss").innerHTML = "$" + round(losss, 2);
+          
+            
+        }
+
+        slider2.oninput = function(){
+            SelectValue2.innerHTML = this.value;
+            slider2.style.left = this.value/10 + "%";
+            selector2.style.left = this.value/10 + "%";
+            progressBar2.style.width = this.value/10 + "%";
+
+          document.getElementById("TransactionMonth").innerHTML = slider2.value;
+          var losss = (slider.value) * (slider2.value) * 0.03 * 0.008 * 12;
+          document.getElementById("loss").innerHTML = "$" + round(losss, 2);
+        }
+       
+
+    </script>
+</body>
+</html>
